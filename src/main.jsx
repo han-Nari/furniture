@@ -38,7 +38,7 @@ const router = createBrowserRouter([
     element: <Contact />,
   },
   {
-    basename: "http://han-nari.github.io/furniture/", // 👈 replace with your GitHub repo name
+    basename: "/furniture", // 👈 replace with your GitHub repo name
   },
 ]);
 
