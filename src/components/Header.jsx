@@ -11,7 +11,7 @@ export default function Header() {
   };
 
   const navBar = [
-    { path: "/", label: "Home" },
+    { path: "/furniture", label: "Home" },
     { path: "/shop", label: "Shop" },
     { path: "/about", label: "About us" },
     { path: "/services", label: "Services" },
