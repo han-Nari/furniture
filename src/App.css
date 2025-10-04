@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import "tailwindcss";
+
+body {
+  background-color: #eff2f1;
+}
+
+.wrapper {
+  width: min(1200px, 90%);
+  margin-inline: auto;
+}
+
+img {
+  max-width: 100%;
+}
+
+.img {
+  display: flex;
+  align-self: end;
+  border-radius: 20px;
+  height: 500px;
+  width: 500px;
+}
+
+.my-grid {
+  display: grid;
+  gap: 2.5rem; /* gap-10 */
+  grid-template-columns: repeat(auto-fit, minmax(min(10rem, 100%), 1fr));
+}
+
+/* Styles */
+
+/* 3B5D50 Hero bg */
+/* 97A494 text opacity */
+/* FFFFFF text-color */
+/* F9BF29 button bg */
+/* 2F2F2F buttonTwo bg */
+/* DCE5E4 Hover bg */
+/* 222222 Hover bg Two */
+/* 3B5D50 green text and button */
+/* 314D43 hover green button */
