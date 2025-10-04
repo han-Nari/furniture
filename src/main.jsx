@@ -38,7 +38,7 @@ const router = createBrowserRouter([
     element: <Contact />,
   },
   {
-    basename: "/furniture", // 👈 replace with your GitHub repo name
+    basename: "/furniture",
   },
 ]);
 
