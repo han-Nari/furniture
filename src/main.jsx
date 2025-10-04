@@ -37,6 +37,9 @@ const router = createBrowserRouter([
     path: "/contact",
     element: <Contact />,
   },
+  {
+    basename: "http://han-nari.github.io/furniture/", // 👈 replace with your GitHub repo name
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(
