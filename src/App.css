@@ -3,6 +3,8 @@
 
 body {
   background-color: #eff2f1;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .wrapper {

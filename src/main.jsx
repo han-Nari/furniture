@@ -11,36 +11,38 @@ import Blog from "./pages/Blog.jsx";
 import Contact from "./pages/Contact.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Homepage />,
-    errorElement: <NotFoundPage />,
-  },
-  {
-    path: "/shop",
-    element: <Shop />,
-  },
-  {
-    path: "/about",
-    element: <About />,
-  },
-  {
-    path: "/services",
-    element: <Services />,
-  },
-  {
-    path: "/blog",
-    element: <Blog />,
-  },
-  {
-    path: "/contact",
-    element: <Contact />,
-  },
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Homepage />,
+      errorElement: <NotFoundPage />,
+    },
+    {
+      path: "/shop",
+      element: <Shop />,
+    },
+    {
+      path: "/about",
+      element: <About />,
+    },
+    {
+      path: "/services",
+      element: <Services />,
+    },
+    {
+      path: "/blog",
+      element: <Blog />,
+    },
+    {
+      path: "/contact",
+      element: <Contact />,
+    },
+  ],
   {
     basename: "/furniture",
-  },
-]);
+  }
+);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
