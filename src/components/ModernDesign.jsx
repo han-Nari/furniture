@@ -21,11 +21,11 @@ export default function ModernDesign() {
             </p>
             <ul className="list-disc flex gap-10 wrapper">
               <div className="grid gap-5">
-                <li class="text-[#222222]/70">
+                <li className="text-[#222222]/70">
                   Our experts help you choose pieces that perfectly match your
                   style and space.
                 </li>
-                <li class="text-[#222222]/70">
+                <li className="text-[#222222]/70">
                   Explore collections that blend clean lines, natural textures,
                   and lasting beauty.
                 </li>
@@ -35,7 +35,7 @@ export default function ModernDesign() {
                   Crafted from durable materials and built to stand the test of
                   time.
                 </li>
-                <li class="text-[#222222]/70">
+                <li className="text-[#222222]/70">
                   From living rooms to workspaces — we help you design every
                   corner with purpose.
                 </li>

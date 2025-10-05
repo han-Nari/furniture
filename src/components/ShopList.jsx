@@ -4,110 +4,87 @@ import product3 from "../assets/product-3.png";
 import product4 from "../assets/chair.jpg";
 import product5 from "../assets/chair2.jpg";
 import product6 from "../assets/chair3.jpg";
-import product7 from "../assets/chair4.jpg";
-import product8 from "../assets/chair5.jpg";
+
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart } from "../features/addCartSlice";
+
+const itemLists = [
+  {
+    id: 1,
+    name: "Nordic Chair",
+    price: 50,
+    img: product1,
+  },
+
+  {
+    id: 2,
+    name: "Kruzo Aero Chair",
+    price: 70,
+    img: product2,
+  },
+
+  {
+    id: 3,
+    name: "Ergonomic Chair",
+    price: 48,
+    img: product3,
+  },
+
+  {
+    id: 4,
+    name: "Oslo Wooden Armchair",
+    price: 150,
+    img: product4,
+  },
+
+  {
+    id: 5,
+    name: "Kruzo Aero Chair",
+    price: 70,
+    img: product5,
+  },
+
+  {
+    id: 6,
+    name: "Nordic Comfort Chair",
+    price: 115,
+    img: product6,
+  },
+];
 
 export default function ShopList() {
+  const dispatch = useDispatch();
+
   return (
     <>
       <section className="py-30">
         <div className="wrapper">
-          <div className="grid place-content-center gap-10 [&>div]:py-10 [&>div]:relative [&>div]:cursor-pointer md:flex lg:flex lg:flex-3 ">
-            <div className="group relative text-center grid gap-10 font-bold px-5 py-7  rounded-2xl cursor-pointer  ">
-              <img
-                src={product1}
-                alt="product1"
-                className="transition-transform duration-500 group-hover:-translate-y-3"
-              />
-              <span className="absolute inset-0 bg-[#DCE5E4] rounded-2xl scale-y-0 origin-bottom transition-transform duration-700 group-hover:scale-y-60 -z-10"></span>
-              <div>
-                <h5 className="text-[#2f2f2f]">Nordic Chair</h5>
-                <p className="text-[#2f2f2f] text-xl">$50.00</p>
-              </div>
-              <p className=" text-white text-xl h-8 w-8 grid place-content-center bg-[#2f2f2f] rounded-full absolute -bottom-4 z-10 left-1/2 -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                <i className="fa-solid fa-plus"></i>
-              </p>
-            </div>
-
-            <div className="group relative text-center grid gap-10  font-bold px-5 py-7 rounded-2xl cursor-pointer">
-              <img
-                src={product2}
-                alt="product2"
-                className="transition-transform duration-500 group-hover:-translate-y-3"
-              />
-              <span className="absolute inset-0 bg-[#DCE5E4] rounded-2xl scale-y-0 origin-bottom transition-transform duration-700 group-hover:scale-y-60 -z-10"></span>
-              <div>
-                <h5 className="text-[#2f2f2f]">Kruzo Aero Chair</h5>
-                <p className="text-[#2f2f2f] text-xl">$70.00</p>
-              </div>
-              <p className=" text-white text-xl h-8 w-8 grid place-content-center bg-[#2f2f2f] rounded-full absolute -bottom-4 z-10 left-1/2 -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                <i className="fa-solid fa-plus"></i>
-              </p>
-            </div>
-
-            <div className="group relative text-center grid gap-10  font-bold px-5 py-7 rounded-2xl cursor-pointer">
-              <img
-                src={product3}
-                alt="product3"
-                className="transition-transform duration-500 group-hover:-translate-y-3"
-              />
-              <span className="absolute inset-0 bg-[#DCE5E4] rounded-2xl scale-y-0 origin-bottom transition-transform duration-700 group-hover:scale-y-60 -z-10"></span>
-              <div>
-                <h5 className="text-[#2f2f2f]">Ergonomic Chair</h5>
-                <p className="text-[#2f2f2f] text-xl">$48.00</p>
-              </div>
-              <p className=" text-white text-xl h-8 w-8 grid place-content-center bg-[#2f2f2f] rounded-full absolute -bottom-4 z-10 left-1/2 -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                <i className="fa-solid fa-plus"></i>
-              </p>
-            </div>
-          </div>
-
-          <div className="grid place-content-center gap-10 [&>div]:py-10 [&>div]:relative [&>div]:cursor-pointer md:flex lg:flex lg:flex-3 ">
-            <div className="group relative text-center grid gap-10 font-bold px-5 py-7  rounded-2xl cursor-pointer  ">
-              <img
-                src={product5}
-                alt="product1"
-                className="transition-transform duration-500 group-hover:-translate-y-3"
-              />
-              <span className="absolute inset-0 bg-[#DCE5E4] rounded-2xl scale-y-0 origin-bottom transition-transform duration-700 group-hover:scale-y-60 -z-10"></span>
-              <div>
-                <h5 className="text-[#2f2f2f]">Oslo Wooden Armchair</h5>
-                <p className="text-[#2f2f2f] text-xl">$150.00</p>
-              </div>
-              <p className=" text-white text-xl h-8 w-8 grid place-content-center bg-[#2f2f2f] rounded-full absolute -bottom-4 z-10 left-1/2 -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                <i className="fa-solid fa-plus"></i>
-              </p>
-            </div>
-            <div className="group relative text-center grid gap-10  font-bold px-5 py-7 rounded-2xl cursor-pointer">
-              <img
-                src={product6}
-                alt="product2"
-                className="transition-transform duration-500 group-hover:-translate-y-3"
-              />
-              <span className="absolute inset-0 bg-[#DCE5E4] rounded-2xl scale-y-0 origin-bottom transition-transform duration-700 group-hover:scale-y-60 -z-10"></span>
-              <div>
-                <h5 className="text-[#2f2f2f]">Kruzo Aero Chair</h5>
-                <p className="text-[#2f2f2f] text-xl">$70.00</p>
-              </div>
-              <p className=" text-white text-xl h-8 w-8 grid place-content-center bg-[#2f2f2f] rounded-full absolute -bottom-4 z-10 left-1/2 -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                <i className="fa-solid fa-plus"></i>
-              </p>
-            </div>
-            <div className="group relative text-center grid gap-10  font-bold px-5 py-7 rounded-2xl cursor-pointer">
-              <img
-                src={product7}
-                alt="product3"
-                className="transition-transform duration-500 group-hover:-translate-y-3"
-              />
-              <span className="absolute inset-0 bg-[#DCE5E4] rounded-2xl scale-y-0 origin-bottom transition-transform duration-700 group-hover:scale-y-60 -z-10"></span>
-              <div>
-                <h5 className="text-[#2f2f2f]">Nordic Comfort Chair</h5>
-                <p className="text-[#2f2f2f] text-xl">$115.00</p>
-              </div>
-              <p className=" text-white text-xl h-8 w-8 grid place-content-center bg-[#2f2f2f] rounded-full absolute -bottom-4 z-10 left-1/2 -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                <i className="fa-solid fa-plus"></i>
-              </p>
-            </div>
+          <div>
+            <ul className="grid grid-cols-1 md:grid-cols-3 gap-10">
+              {itemLists.map((items) => (
+                <div className="group relative text-center grid gap-10 justify-center font-bold px-5 py-7  rounded-2xl cursor-pointer  ">
+                  <img
+                    src={items.img}
+                    alt="product1"
+                    className="transition-transform duration-500 group-hover:-translate-y-3"
+                  />
+                  <span className="absolute inset-0 bg-[#DCE5E4] rounded-2xl scale-y-0 origin-bottom transition-transform duration-700 group-hover:scale-y-60 -z-10"></span>
+                  <div>
+                    <h5 className="text-[#2f2f2f]">{items.name}</h5>
+                    <p className="text-[#2f2f2f] text-xl">${items.price}.00</p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      dispatch(addToCart(items));
+                      alert(`Add To Cart Success!`);
+                    }}
+                    className="text-white w-fit mx-auto p-2 px-5  bg-[#3B5D50] hover:bg-[#314D43] font-semibold rounded-sm cursor-pointer"
+                  >
+                    Add To Cart
+                  </button>
+                </div>
+              ))}
+            </ul>
           </div>
         </div>
       </section>

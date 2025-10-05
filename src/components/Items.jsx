@@ -33,9 +33,9 @@ export default function Items(props) {
                 <h5 className="text-[#2f2f2f]">Nordic Chair</h5>
                 <p className="text-[#2f2f2f] text-xl">$50.00</p>
               </div>
-              <p className=" text-white text-xl h-8 w-8 grid place-content-center bg-[#2f2f2f] rounded-full absolute -bottom-4 z-10 left-1/2 -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                <i className="fa-solid fa-plus"></i>
-              </p>
+              <button className="text-white w-fit mx-auto p-2 px-5  bg-[#3B5D50] hover:bg-[#314D43] font-semibold rounded-sm cursor-pointer">
+                Add To Cart
+              </button>
             </div>
 
             <div className="group relative text-center grid gap-10  font-bold px-5 py-7 rounded-2xl cursor-pointer">
@@ -49,9 +49,9 @@ export default function Items(props) {
                 <h5 className="text-[#2f2f2f]">Kruzo Aero Chair</h5>
                 <p className="text-[#2f2f2f] text-xl">$70.00</p>
               </div>
-              <p className=" text-white text-xl h-8 w-8 grid place-content-center bg-[#2f2f2f] rounded-full absolute -bottom-4 z-10 left-1/2 -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                <i className="fa-solid fa-plus"></i>
-              </p>
+              <button className="text-white w-fit mx-auto p-2 px-5  bg-[#3B5D50] hover:bg-[#314D43] font-semibold rounded-sm cursor-pointer">
+                Add To Cart
+              </button>
             </div>
 
             <div className="group relative text-center grid gap-10  font-bold px-5 py-7 rounded-2xl cursor-pointer">
@@ -65,9 +65,9 @@ export default function Items(props) {
                 <h5 className="text-[#2f2f2f]">Ergonomic Chair</h5>
                 <p className="text-[#2f2f2f] text-xl">$48.00</p>
               </div>
-              <p className=" text-white text-xl h-8 w-8 grid place-content-center bg-[#2f2f2f] rounded-full absolute -bottom-4 z-10 left-1/2 -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                <i className="fa-solid fa-plus"></i>
-              </p>
+              <button className="text-white w-fit mx-auto p-2 px-5  bg-[#3B5D50] hover:bg-[#314D43] font-semibold rounded-sm cursor-pointer">
+                Add To Cart
+              </button>
             </div>
           </div>
         </div>

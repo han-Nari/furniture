@@ -10,6 +10,9 @@ import Services from "./pages/Services.jsx";
 import Blog from "./pages/Blog.jsx";
 import Contact from "./pages/Contact.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
+import { store } from "./app/store.js";
+import { Provider } from "react-redux";
+import Cart from "./pages/Cart.jsx";
 
 const router = createBrowserRouter(
   [
@@ -38,6 +41,10 @@ const router = createBrowserRouter(
       path: "/contact",
       element: <Contact />,
     },
+    {
+      path: "/cart",
+      element: <Cart />,
+    },
   ],
   {
     basename: "/furniture",
@@ -46,6 +53,8 @@ const router = createBrowserRouter(
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 );
