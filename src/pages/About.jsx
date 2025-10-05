@@ -12,7 +12,7 @@ export default function About() {
 
       <HeroSection
         title="About us"
-        intro="At Furni, we believe that great design should be both beautiful and functional. Our passion is creating furniture that brings comfort, style, and durability into your home."
+        intro="At Furni, we believe that great design should be both beautiful and functional. "
       />
 
       <ChooseUs

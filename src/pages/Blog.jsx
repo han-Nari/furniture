@@ -11,7 +11,7 @@ export default function Blog() {
 
       <HeroSection
         title="Blog"
-        intro="Stay inspired with our curated articles on interior design, craftsmanship, and lifestyle. Learn how to transform your space with timeless elegance."
+        intro="Get inspired with tips on design, craftsmanship, and timeless living."
       />
 
       <MyBlogs />

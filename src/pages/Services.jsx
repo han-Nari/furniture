@@ -12,7 +12,7 @@ export default function Services() {
 
       <HeroSection
         title="Services"
-        intro="We go beyond just furniture. At Furni, our services are designed to make your journey easy — from personalized design guidance to seamless delivery and aftercare. We’re here to ensure every step feels effortless."
+        intro="At Furni, we make furniture shopping easy — from custom design to delivery and care."
       />
 
       <MyServices />
