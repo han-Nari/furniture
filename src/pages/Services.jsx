@@ -17,7 +17,7 @@ export default function Services() {
 
       <MyServices />
 
-      <Items />
+      <Items intro="We choose only the finest woods, fabrics, and finishes — creating furniture that feels as good as it looks." />
 
       <Testimonials />
 

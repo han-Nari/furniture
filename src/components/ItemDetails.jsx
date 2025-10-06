@@ -27,7 +27,6 @@ export default function ItemDetails() {
                   A minimalist classic that blends clean lines and natural wood
                   tones — perfect for modern, cozy interiors.
                 </p>
-                <button className="w-fit text-[#222222]">Read More</button>
               </div>
             </article>
 
@@ -43,7 +42,6 @@ export default function ItemDetails() {
                   Designed for comfort and style, this sleek chair combines
                   smooth curves with lightweight durability.
                 </p>
-                <button className="w-fit text-[#222222]">Read More</button>
               </div>
             </article>
 
@@ -59,7 +57,6 @@ export default function ItemDetails() {
                   Built to support your posture all day long, offering maximum
                   comfort for work or relaxation.
                 </p>
-                <button className="w-fit text-[#222222]">Read More</button>
               </div>
             </article>
           </div>
