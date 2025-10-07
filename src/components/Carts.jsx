@@ -249,17 +249,17 @@ export default function Carts() {
                       <>
                         {discountedApplied && !couponAlreadyUsed && (
                           <p className="text-green-600 font-semibold">
-                            ✅ Coupon applied! Shipping fee removed.
+                            Coupon applied! Shipping fee removed.
                           </p>
                         )}
                         {discountedApplied && couponAlreadyUsed && (
                           <p className="text-yellow-600 font-semibold">
-                            ⚠️ Coupon already applied.
+                            Coupon already applied.
                           </p>
                         )}
                         {!discountedApplied && !couponAlreadyUsed && (
                           <p className="text-red-600 font-semibold">
-                            ❌ Invalid coupon code.
+                            Invalid coupon code.
                           </p>
                         )}
                       </>

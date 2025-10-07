@@ -2,9 +2,13 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import cart from "../assets/cart.svg";
 import user from "../assets/user.svg";
+import { useSelector } from "react-redux";
+import { myCart } from "../features/addCartSlice";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const { cartItems } = useSelector(myCart);
+  const itemCarts = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   const openMenu = () => {
     setIsOpen((prev) => !prev);
@@ -80,14 +84,18 @@ export default function Header() {
                 </NavLink>
               </li>
             ))}
-            <li>
-              <NavLink to="/user">
-                <img src={user} alt="user" />
+
+            <li className="relative">
+              <NavLink to="/cart">
+                <img src={cart} alt="cart" />
+                <p className="absolute text-xs -top-2 -right-3 grid place-content-center text-white bg-red-500 h-4 w-4 rounded-full">
+                  {itemCarts}
+                </p>
               </NavLink>
             </li>
             <li>
-              <NavLink to="/cart">
-                <img src={cart} alt="cart" />
+              <NavLink to="/user">
+                <img src={user} alt="user" />
               </NavLink>
             </li>
           </ul>

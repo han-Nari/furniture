@@ -74,6 +74,7 @@ const cartSlice = createSlice({
         }
       } else {
         state.couponAlreadyUsed = false;
+        state.discountedApplied = false;
       }
     },
   },
