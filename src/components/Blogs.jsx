@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import post1 from "../assets/post-1.jpg";
 import post2 from "../assets/post-2.jpg";
 import post3 from "../assets/post-3.jpg";
@@ -15,12 +16,12 @@ export default function Blogs() {
               Recent Blogs
             </h2>
 
-            <a
-              href="#"
+            <Link
+              to="/blog"
               className="font-bold underline text-[#222222]/70 text-sm"
             >
               View All Posts
-            </a>
+            </Link>
           </div>
           <div className="grid place-content-center gap-10 [&>div]:py-10 [&>div]:relative [&>div]:cursor-pointer md:flex lg:flex lg:flex-3 ">
             <arcticle className="grid gap-3">

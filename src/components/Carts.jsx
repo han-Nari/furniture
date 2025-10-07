@@ -1,27 +1,57 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   clearCart,
   removeFromCart,
   myCart,
   increaseQuantity,
   decreaseQuantity,
+  applyCoupon,
 } from "../features/addCartSlice";
 import { useSelector, useDispatch } from "react-redux";
 import empty from "../assets/empty.png";
 import { Link } from "react-router-dom";
 
 export default function Carts() {
-  const { cartItems } = useSelector(myCart);
+  const [code, setCode] = useState("");
+  const {
+    cartItems,
+    shippingFee,
+    discountedApplied,
+    couponChecked,
+    couponAlreadyUsed,
+    invalidCoupon,
+  } = useSelector(myCart);
   const dispatch = useDispatch();
+  const [totalPrice, setTotalPrice] = useState(0);
 
-  const totalPrice = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
+  // 🪄 Add modal states
+  const [showModal, setShowModal] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState(null);
+
+  useEffect(() => {
+    const newTotalPrice = cartItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+    setTotalPrice(newTotalPrice);
+  }, [cartItems]);
 
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
+
+  useEffect(() => {
+    localStorage.setItem("fee", JSON.stringify(shippingFee));
+  }, [shippingFee]);
+
+  useEffect(() => {
+    localStorage.setItem("discount", JSON.stringify(discountedApplied));
+  }, [discountedApplied]);
+
+  const handleCoupon = () => {
+    dispatch(applyCoupon(code));
+    setCode("");
+  };
 
   return (
     <section aria-labelledby="cart" className="py-20">
@@ -79,7 +109,10 @@ export default function Carts() {
                       </td>
                       <td className="px-4 py-4">
                         <button
-                          onClick={() => dispatch(removeFromCart(item.id))}
+                          onClick={() => {
+                            setItemToDelete(item);
+                            setShowModal(true);
+                          }}
                           className=" px-3 py-1 hover:text-red-500 cursor-pointer self-center"
                         >
                           <svg
@@ -89,10 +122,10 @@ export default function Carts() {
                             viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            class="lucide lucide-trash-icon lucide-trash"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="lucide lucide-trash-icon lucide-trash"
                           >
                             <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
                             <path d="M3 6h18" />
@@ -147,7 +180,10 @@ export default function Carts() {
                   </div>
 
                   <button
-                    onClick={() => dispatch(removeFromCart(item.id))}
+                    onClick={() => {
+                      setItemToDelete(item);
+                      setShowModal(true);
+                    }}
                     className=" px-3 py-1  hover:text-red-500 cursor-pointer self-end"
                   >
                     <svg
@@ -157,10 +193,10 @@ export default function Carts() {
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="lucide lucide-trash-icon lucide-trash"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="lucide lucide-trash-icon lucide-trash"
                     >
                       <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
                       <path d="M3 6h18" />
@@ -189,18 +225,45 @@ export default function Carts() {
                 <div className="grid gap-5">
                   <h3 className="text-2xl font-semibold">Coupon</h3>
                   <p className="text-[#97A494] text-md">
-                    Enter your coupon code if you have one.
+                    No coupon code yet? Use "Kupal" to get free shipping!
                   </p>
-                  <div className="grid gap-5 lg:flex">
-                    <input
-                      type="text"
-                      placeholder="Coupon Code "
-                      className="w-full lg:w-[30%] p-2 border bg-white border-[#97A494] focus:border-[#222222] focus:outline-none rounded-md"
-                    ></input>
+                  <div className="grid gap-5 lg:flex-col lg:items-center">
+                    <div className="grid gap-5 lg:flex">
+                      <input
+                        type="text"
+                        onChange={(e) => setCode(e.target.value)}
+                        value={code}
+                        placeholder="Coupon Code "
+                        className="w-full lg:w-[30%] p-2 border bg-white border-[#97A494] focus:border-[#222222] focus:outline-none rounded-md"
+                      ></input>
 
-                    <button className="cursor-pointer text-white rounded-3xl w-fit bg-[#2F2F2F] px-7 py-2.5 font-bold hover:bg-[#222222]">
-                      Apply Coupon
-                    </button>
+                      <button
+                        onClick={handleCoupon}
+                        className="cursor-pointer text-white rounded-3xl w-fit bg-[#2F2F2F] px-7 py-2.5 font-bold hover:bg-[#222222]"
+                      >
+                        Apply Coupon
+                      </button>
+                    </div>
+
+                    {couponChecked && (
+                      <>
+                        {discountedApplied && !couponAlreadyUsed && (
+                          <p className="text-green-600 font-semibold">
+                            ✅ Coupon applied! Shipping fee removed.
+                          </p>
+                        )}
+                        {discountedApplied && couponAlreadyUsed && (
+                          <p className="text-yellow-600 font-semibold">
+                            ⚠️ Coupon already applied.
+                          </p>
+                        )}
+                        {!discountedApplied && !couponAlreadyUsed && (
+                          <p className="text-red-600 font-semibold">
+                            ❌ Invalid coupon code.
+                          </p>
+                        )}
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
@@ -208,20 +271,57 @@ export default function Carts() {
               <div className="flex flex-col gap-5">
                 <h3 className="text-2xl font-semibold uppercase">Cart Total</h3>
                 <p className="text-[#97A494] text-md"></p>
-                <h3 className="text-md font-semibold text-[#222222]">
+                <p className="text-md font-semibold text-[#222222]">
                   Sub Total: ${totalPrice.toFixed(2)}
-                </h3>
-                <h3 className="text-md font-semibold text-[#222222]">
-                  Total: ${totalPrice + 50}
-                </h3>
-                <button className="cursor-pointer text-white rounded-3xl w-fit bg-[#2F2F2F] px-7 py-2.5 font-bold hover:bg-[#222222]">
-                  Proceed To Checkout
+                </p>
+                <p className="text-md font-semibold text-[#222222]">
+                  Shipping Fee: ${shippingFee.toFixed(2)}
+                </p>
+
+                <p className="text-md font-semibold text-[#222222]">
+                  Total: ${(totalPrice + shippingFee).toFixed(2)}
+                </p>
+                <button className="cursor-pointer text-white rounded-4xl w-fit bg-[#2F2F2F] px-8 py-4 font-bold hover:bg-[#222222]">
+                  <Link to="/checkout"> Proceed To Checkout</Link>
                 </button>
               </div>
             </div>
           </>
         )}
       </div>
+
+      {/* 🪄 Delete Confirmation Modal */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded-2xl shadow-xl text-center max-w-sm w-full">
+            <h2 className="text-lg font-semibold mb-4 text-[#222222]">
+              Remove Item
+            </h2>
+            <p className="text-gray-600 mb-6">
+              Are you sure you want to remove{" "}
+              <span className="font-semibold">{itemToDelete?.name}</span> from
+              your cart?
+            </p>
+            <div className="flex justify-center gap-4">
+              <button
+                onClick={() => {
+                  dispatch(removeFromCart(itemToDelete.id));
+                  setShowModal(false);
+                }}
+                className="bg-[#2F2F2F] text-white px-5 py-2 rounded-lg hover:bg-[#1E1E1E] transition"
+              >
+                Yes, Remove
+              </button>
+              <button
+                onClick={() => setShowModal(false)}
+                className="bg-gray-300 px-5 py-2 rounded-lg hover:bg-gray-400 transition"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

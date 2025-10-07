@@ -30,6 +30,11 @@ img {
   width: 500px;
 }
 
+.img2 {
+  width: 500px;
+  height: 250px;
+}
+
 .my-grid {
   display: grid;
   gap: 2.5rem; /* gap-10 */

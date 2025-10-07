@@ -13,6 +13,7 @@ import NotFoundPage from "./pages/NotFoundPage.jsx";
 import { store } from "./app/store.js";
 import { Provider } from "react-redux";
 import Cart from "./pages/Cart.jsx";
+import Checkout from "./components/Checkout.jsx";
 
 const router = createBrowserRouter(
   [
@@ -44,6 +45,10 @@ const router = createBrowserRouter(
     {
       path: "/cart",
       element: <Cart />,
+    },
+    {
+      path: "/checkout",
+      element: <Checkout />,
     },
   ],
   {

@@ -4,6 +4,10 @@ const cartSlice = createSlice({
   name: "cart",
   initialState: {
     cartItems: JSON.parse(localStorage.getItem("cartItems")) || [],
+    shippingFee: JSON.parse(localStorage.getItem("fee")) ?? 50,
+    discountedApplied: JSON.parse(localStorage.getItem("discount")) || false,
+    couponChecked: false,
+    couponAlreadyUsed: false,
   },
   reducers: {
     addToCart: (state, action) => {
@@ -16,16 +20,27 @@ const cartSlice = createSlice({
     },
 
     removeFromCart: (state, action) => {
-      const item = action.payload;
+      const itemId = action.payload;
+
       if (window.confirm(`Are you sure you want to remove your product?`)) {
-        state.cartItems = state.cartItems.filter(
-          (i) => i.id !== action.payload
-        );
+        state.cartItems = state.cartItems.filter((i) => i.id !== itemId);
+      }
+
+      if (state.cartItems.length === 0) {
+        state.discountedApplied = false;
+        state.shippingFee = 50;
+        state.couponChecked = false;
+        state.couponAlreadyUsed = false;
       }
     },
 
     clearCart: (state) => {
       state.cartItems = [];
+
+      state.discountedApplied = false;
+      state.shippingFee = 50;
+      state.couponChecked = false;
+      state.couponAlreadyUsed = false;
     },
 
     increaseQuantity: (state, action) => {
@@ -39,8 +54,26 @@ const cartSlice = createSlice({
     decreaseQuantity: (state, action) => {
       const item = state.cartItems.find((i) => i.id === action.payload);
 
-      if (item) {
-        item.quantity ? (item.quantity -= 1) : 0;
+      if (item && item.quantity > 1) {
+        item.quantity -= 1;
+      }
+    },
+    applyCoupon: (state, action) => {
+      const code = action.payload.trim().toLowerCase();
+      state.couponChecked = true;
+
+      if (!code) return;
+
+      if (code === "kupal") {
+        if (state.discountedApplied) {
+          state.couponAlreadyUsed = true;
+        } else {
+          state.shippingFee = 0;
+          state.discountedApplied = true;
+          state.couponAlreadyUsed = false;
+        }
+      } else {
+        state.couponAlreadyUsed = false;
       }
     },
   },
@@ -53,5 +86,7 @@ export const {
   clearCart,
   increaseQuantity,
   decreaseQuantity,
+  applyCoupon,
+  couponAlreadyUsed,
 } = cartSlice.actions;
 export default cartSlice.reducer;
