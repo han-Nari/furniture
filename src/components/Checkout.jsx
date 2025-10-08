@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setCountry,
@@ -34,9 +34,9 @@ export default function Checkout() {
     message,
     saved: saveLists,
   } = useSelector((state) => state.accountForm);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
   const [active, setIsActive] = useState(null);
   const [toggle, setToggle] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -72,17 +72,15 @@ export default function Checkout() {
       companyName.trim() !== "" &&
       address.trim() !== "" &&
       states.trim() !== "" &&
-      message.trim() !== "" &&
       email.trim() !== ""
     ) {
-      setSuccess("Form submitted successfully");
       setError("");
       dispatch(clearCart());
       dispatch(clearForm());
       dispatch(clearShippingFee());
+      navigate("/thankyou");
     } else {
       setError("Fill up the required forms");
-      setSuccess("");
     }
 
     dispatch(
@@ -133,7 +131,6 @@ export default function Checkout() {
               </h2>
 
               <div className="flex flex-col gap-4 [&>select,div>input]:border-1 [&>select,div>input]:border-[#222222]/30 [&>select,div>input]:focus:outline-none [&>select,div>input]:focus:border [&>select,div>input]:focus:border-[#3B5D50] [&>select,div>input]:p-2 [&>select,div>input]:rounded-md [&>select,div>input]:w-full">
-                <p className="text-2xl text-green-500"> {success}</p>
                 <p className="text-2xl text-red-500">{error}</p>
                 <select
                   name="country"
@@ -269,7 +266,7 @@ export default function Checkout() {
                     onChange={(e) => dispatch(setMessage(e.target.value))}
                     name="order"
                     id="order"
-                    placeholder="Write your notes here..."
+                    placeholder="Write your notes here (Optional)"
                     className="border-1 border-[#222222]/30 focus:outline-none focus:border focus:border-[#3B5D50] p-2 rounded-md"
                   ></textarea>
                 </div>

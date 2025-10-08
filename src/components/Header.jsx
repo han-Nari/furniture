@@ -94,7 +94,7 @@ export default function Header() {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/user">
+              <NavLink to="/login">
                 <img src={user} alt="user" />
               </NavLink>
             </li>

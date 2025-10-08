@@ -14,6 +14,8 @@ import { store } from "./app/store.js";
 import { Provider } from "react-redux";
 import Cart from "./pages/Cart.jsx";
 import Payment from "./pages/Payment.jsx";
+import ThankYou from "./pages/Thankyou.jsx";
+import Login from "./components/Login.jsx";
 
 const router = createBrowserRouter(
   [
@@ -49,6 +51,14 @@ const router = createBrowserRouter(
     {
       path: "/checkout",
       element: <Payment />,
+    },
+    {
+      path: "/thankyou",
+      element: <ThankYou />,
+    },
+    {
+      path: "/login",
+      element: <Login />,
     },
   ],
   {
