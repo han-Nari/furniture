@@ -85,7 +85,7 @@ export default function Header() {
               </li>
             ))}
 
-            <li className="relative">
+            <li className="relative w-fit">
               <NavLink to="/cart">
                 <img src={cart} alt="cart" />
                 <p className="absolute text-xs -top-2 -right-3 grid place-content-center text-white bg-red-500 h-4 w-4 rounded-full">
