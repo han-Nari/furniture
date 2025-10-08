@@ -16,6 +16,7 @@ import Cart from "./pages/Cart.jsx";
 import Payment from "./pages/Payment.jsx";
 import ThankYou from "./pages/Thankyou.jsx";
 import Login from "./components/Login.jsx";
+import Receipt from "./components/Reciept.jsx";
 
 const router = createBrowserRouter(
   [
@@ -59,6 +60,10 @@ const router = createBrowserRouter(
     {
       path: "/login",
       element: <Login />,
+    },
+    {
+      path: "/reciept",
+      element: <Receipt />,
     },
   ],
   {

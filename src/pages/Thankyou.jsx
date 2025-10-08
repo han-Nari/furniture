@@ -18,6 +18,12 @@ export default function ThankYou() {
         <p className="text-[#222222]/70 text-2xl">
           You order was successfuly completed.
         </p>
+        <Link
+          to="/reciept"
+          className="text-xl underline hover:no-underline hover:text-[#3B5D50]"
+        >
+          Check your order!
+        </Link>
         <button className="self-center cursor-pointer text-white rounded-3xl w-fit bg-[#2F2F2F] px-7 py-2.5 font-bold hover:bg-[#222222]">
           <Link to="/shop">Back To Shop</Link>
         </button>

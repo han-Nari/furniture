@@ -75,9 +75,6 @@ export default function Checkout() {
       email.trim() !== ""
     ) {
       setError("");
-      dispatch(clearCart());
-      dispatch(clearForm());
-      dispatch(clearShippingFee());
       navigate("/thankyou");
     } else {
       setError("Fill up the required forms");
