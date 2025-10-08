@@ -120,7 +120,7 @@ export default function Checkout() {
           </h4>
           <form
             onSubmit={formInput}
-            className="grid gap-10 bg-white p-5 px-10 shadow-md rounded-xl lg:flex [&>*]:flex-1"
+            className="grid gap-10 bg-white w-full p-10 shadow-md rounded-xl lg:flex [&>*]:flex-1"
           >
             <article className="flex-2">
               <h2
