@@ -6,11 +6,12 @@ const initialState = {
   lastName: "",
   companyName: "",
   address: "",
-  aparment: "",
+  apartment: "",
   states: "",
-  zip: undefined,
+  zip: "",
   email: "",
-  phone: undefined,
+  phone: "",
+  message: "",
   saved: JSON.parse(localStorage.getItem("account")) || [],
 };
 
@@ -49,6 +50,9 @@ const formSlice = createSlice({
     setPhone: (state, action) => {
       state.phone = action.payload;
     },
+    setMessage: (state, action) => {
+      state.message = action.payload;
+    },
     clearForm: (state) => {
       state.country = "";
       state.names = "";
@@ -60,9 +64,11 @@ const formSlice = createSlice({
       state.zip = "";
       state.email = "";
       state.phone = "";
+      state.message = "";
     },
     saved: (state, action) => {
       state.saved.push(action.payload);
+      localStorage.setItem("account", JSON.stringify(state.saved));
     },
   },
 });
@@ -78,6 +84,7 @@ export const {
   setZip,
   setEmail,
   setPhone,
+  setMessage,
   clearForm,
   saved,
 } = formSlice.actions;

@@ -43,6 +43,11 @@ const cartSlice = createSlice({
       state.couponAlreadyUsed = false;
     },
 
+    clearShippingFee: (state) => {
+      state.cartItems = [];
+      state.shippingFee = 0;
+    },
+
     increaseQuantity: (state, action) => {
       const item = state.cartItems.find((i) => i.id === action.payload);
 
@@ -89,5 +94,6 @@ export const {
   decreaseQuantity,
   applyCoupon,
   couponAlreadyUsed,
+  clearShippingFee,
 } = cartSlice.actions;
 export default cartSlice.reducer;

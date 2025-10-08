@@ -11,11 +11,13 @@ import {
   setZip,
   setEmail,
   setPhone,
+  setMessage,
   clearForm,
   saved,
 } from "../features/formSlice";
-
 import { useEffect, useState } from "react";
+
+import { clearCart, myCart, clearShippingFee } from "../features/addCartSlice";
 
 export default function Checkout() {
   const {
@@ -29,6 +31,7 @@ export default function Checkout() {
     zip,
     email,
     phone,
+    message,
     saved: saveLists,
   } = useSelector((state) => state.accountForm);
   const dispatch = useDispatch();
@@ -36,6 +39,21 @@ export default function Checkout() {
   const [success, setSuccess] = useState("");
   const [active, setIsActive] = useState(null);
   const [toggle, setToggle] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  const { cartItems, shippingFee } = useSelector(myCart);
+
+  useEffect(() => {
+    const newTotalPrice = cartItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+    setTotalPrice(newTotalPrice);
+  }, [cartItems]);
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const activeState = (option) => {
     setIsActive((prev) => (prev === option ? null : option));
@@ -54,10 +72,14 @@ export default function Checkout() {
       companyName.trim() !== "" &&
       address.trim() !== "" &&
       states.trim() !== "" &&
+      message.trim() !== "" &&
       email.trim() !== ""
     ) {
       setSuccess("Form submitted successfully");
       setError("");
+      dispatch(clearCart());
+      dispatch(clearForm());
+      dispatch(clearShippingFee());
     } else {
       setError("Fill up the required forms");
       setSuccess("");
@@ -75,10 +97,9 @@ export default function Checkout() {
         zip: zip.trim(),
         email: email.trim(),
         phone: phone.trim(),
+        message: message.trim(),
       })
     );
-
-    dispatch(clearForm());
   };
 
   useEffect(() => {
@@ -101,7 +122,7 @@ export default function Checkout() {
           </h4>
           <form
             onSubmit={formInput}
-            className="grid gap-10 bg-white p-5 shadow-md rounded-xl lg:flex [&>*]:flex-1"
+            className="grid gap-10 bg-white p-5 px-10 shadow-md rounded-xl lg:flex [&>*]:flex-1"
           >
             <article className="flex-2">
               <h2
@@ -217,7 +238,7 @@ export default function Checkout() {
                       </label>
                     </div>
 
-                    <dvv
+                    <div
                       className={`grid gap-5 text-md text-[#222222]/70 mt-2 transition-all duration-500 ease-in-out overflow-hidden ${
                         toggle ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
                       }`}
@@ -232,17 +253,7 @@ export default function Checkout() {
                         placeholder="Account Password"
                         className="border-1 border-[#222222]/30 focus:outline-none focus:border focus:border-[#3B5D50] p-2 rounded-md w-full"
                       />
-                    </dvv>
-                  </div>
-
-                  <div className="flex gap-2 items-center">
-                    <input type="checkbox" name="account" id="address" />
-                    <label
-                      htmlFor="address"
-                      className="text-md font-semibold text-[#222222]"
-                    >
-                      Ship To A Different Address?
-                    </label>
+                    </div>
                   </div>
                 </div>
 
@@ -254,6 +265,8 @@ export default function Checkout() {
                     Order Notes
                   </label>
                   <textarea
+                    value={message}
+                    onChange={(e) => dispatch(setMessage(e.target.value))}
                     name="order"
                     id="order"
                     placeholder="Write your notes here..."
@@ -276,21 +289,27 @@ export default function Checkout() {
                     <h5>Product</h5>
                     <p>Total</p>
                   </div>
-                  <div className="text-md">
-                    <p>Top Up T-Shirt x 1</p>
-                    <p>$250</p>
+                  {cartItems.map((item, id) => (
+                    <>
+                      <div className="text-md">
+                        <p>
+                          {item.name} - x{item.quantity}
+                        </p>
+                        <p className="font-semibold text-[#222222]">
+                          ${item.price.toFixed(2)}
+                        </p>
+                      </div>
+                    </>
+                  ))}
+
+                  <div className="text-md font-semibold text-[#222222]">
+                    <p> Shipping Fee:</p>
+                    <p>${shippingFee.toFixed(2)}</p>
                   </div>
-                  <div className="text-md">
-                    <p>Polo Shirt x 1</p>
-                    <p>$100</p>
-                  </div>
-                  <div className="text-md font-bold">
-                    <p>Cart Subtotal</p>
-                    <p>$350</p>
-                  </div>
-                  <div className="text-md font-bold">
-                    <p>Order Total</p>
-                    <p>$350</p>
+
+                  <div className="text-md font-semibold text-[#222222]">
+                    <p>Total:</p>
+                    <p>${(totalPrice + shippingFee).toFixed(2)}</p>
                   </div>
                 </div>
 
@@ -366,14 +385,15 @@ export default function Checkout() {
             </article>
           </form>
           {/* <ul>
-              {saveLists.map((item, id) => (
-                <li key={id}>
-                  {item.country} - {item.names} - {item.lastName} -{" "}
-                  {item.companyName} - {item.address} - {item.states}{" "}
-                  {item.apartment} - {item.zip} - {item.email} - {item.phone}
-                </li>
-              ))}
-            </ul> */}
+            {saveLists.map((item, id) => (
+              <li key={id}>
+                {item.country} - {item.names} - {item.lastName} -{" "}
+                {item.companyName} - {item.address} - {item.states}{" "}
+                {item.apartment} - {item.zip} - {item.email} - {item.phone} -{" "}
+                {item.message}
+              </li>
+            ))}
+          </ul> */}
         </div>
       </section>
     </>
