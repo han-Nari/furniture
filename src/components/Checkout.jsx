@@ -137,10 +137,39 @@ export default function Checkout() {
                   value={country}
                   onChange={(e) => dispatch(setCountry(e.target.value))}
                   id="country"
+                  className="border rounded-lg p-2 w-full"
                 >
                   <option value="">Select your country</option>
                   <option value="philippines">Philippines</option>
-                  <option value="usa">United Stated</option>
+                  <option value="usa">United States</option>
+                  <option value="uk">United Kingdom</option>
+                  <option value="canada">Canada</option>
+                  <option value="australia">Australia</option>
+                  <option value="japan">Japan</option>
+                  <option value="china">China</option>
+                  <option value="south-korea">South Korea</option>
+                  <option value="germany">Germany</option>
+                  <option value="france">France</option>
+                  <option value="italy">Italy</option>
+                  <option value="spain">Spain</option>
+                  <option value="brazil">Brazil</option>
+                  <option value="india">India</option>
+                  <option value="mexico">Mexico</option>
+                  <option value="uae">United Arab Emirates</option>
+                  <option value="russia">Russia</option>
+                  <option value="south-africa">South Africa</option>
+                  <option value="singapore">Singapore</option>
+                  <option value="thailand">Thailand</option>
+                  <option value="vietnam">Vietnam</option>
+                  <option value="malaysia">Malaysia</option>
+                  <option value="indonesia">Indonesia</option>
+                  <option value="turkey">Turkey</option>
+                  <option value="netherlands">Netherlands</option>
+                  <option value="sweden">Sweden</option>
+                  <option value="switzerland">Switzerland</option>
+                  <option value="denmark">Denmark</option>
+                  <option value="norway">Norway</option>
+                  <option value="new-zealand">New Zealand</option>
                 </select>
 
                 <div className="flex gap-5">
